@@ -15,7 +15,7 @@ appName = "hello-java"
 
 pipeline {
     // Use the 'maven' Jenkins agent image which is provided with OpenShift
-    agent { label "maven" }
+//     agent { label "maven" }
     stages {
         stage("Checkout") {
             steps {
