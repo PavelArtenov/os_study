@@ -25,8 +25,9 @@ pipeline {
         stage('Build image') {
                 /* This builds the actual image; synonymous to
                  * docker build on the command line */
-
-                app = docker.build("app")
+                 steps {
+                   app = docker.build("app")
+                 }
             }
 
         // You could extend the pipeline by tagging the image,
