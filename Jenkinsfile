@@ -22,14 +22,12 @@ pipeline {
                 checkout scm
             }
         }
-        stage("Docker Build") {
-            steps {
-                // This uploads your application's source code and performs a binary build in OpenShift
-                // This is a step defined in the shared library (see the top for the URL)
-                // (Or you could invoke this step using 'oc' commands!)
-                binaryBuild(buildConfigName: appName, buildFromPath: ".")
+        stage('Build image') {
+                /* This builds the actual image; synonymous to
+                 * docker build on the command line */
+
+                app = docker.build("app")
             }
-        }
 
         // You could extend the pipeline by tagging the image,
         // or deploying it to a production environment, etc......
