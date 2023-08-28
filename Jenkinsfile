@@ -22,13 +22,11 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build image') {
-                /* This builds the actual image; synonymous to
-                 * docker build on the command line */
-                 steps {
-                   app = docker.build("app")
-                 }
-            }
+        stage('Docker Build') {
+            	agent any
+              steps {
+              	sh 'docker build .'
+              }
 
         // You could extend the pipeline by tagging the image,
         // or deploying it to a production environment, etc......
