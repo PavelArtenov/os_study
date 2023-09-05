@@ -15,9 +15,7 @@ appName = "app"
 
 pipeline {
     // Use the 'maven' Jenkins agent image which is provided with OpenShift
-    agent {
-            docker docker-agent
-        }
+    agent { label 'docker-agent' }
     stages {
         stage("Checkout") {
             steps {
