@@ -22,12 +22,12 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Docker Build') {
-            	agent any
-              steps {
-              	sh 'docker build .'
-              }
-        }
+//         stage('Docker Build') {
+//             	agent any
+//               steps {
+//               	sh 'docker build .'
+//               }
+//         }
 
         // You could extend the pipeline by tagging the image,
         // or deploying it to a production environment, etc......
