@@ -14,22 +14,19 @@ retriever: modernSCM(
 appName = "app"
 
 pipeline {
-    // Use the 'maven' Jenkins agent image which is provided with OpenShift
-    agent { label 'docker-agent' }
-    stages {
-        stage("Checkout") {
-            steps {
-                checkout scm
-            }
-        }
-        stage('Docker Build') {
-            	agent any
-              steps {
-              	sh 'docker build .'
-              }
-        }
-
-        // You could extend the pipeline by tagging the image,
-        // or deploying it to a production environment, etc......
+	agent none
+  stages {
+  	stage('Maven Install') {
+    	agent any
+      steps {
+      	sh './gradlew clean build'
+      }
     }
+    stage('Docker Build') {
+    	agent any
+      steps {
+      	sh 'docker build .'
+      }
+    }
+  }
 }
