@@ -19,7 +19,7 @@ pipeline {
   	stage('Maven Install') {
     	agent any
       steps {
-      	sh './gradlew clean build'
+      	cmd './gradlew clean build'
       }
     }
     stage('Docker Build') {
