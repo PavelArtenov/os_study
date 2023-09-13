@@ -25,7 +25,7 @@ pipeline {
     stage('Docker Build') {
     	agent any
       steps {
-      	bat 'docker build .'
+      	bat 'docker build -t vishnevii/os .'
       }
     }
     stage('Docker Push') {
@@ -33,7 +33,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             bat "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-            bat 'docker push vishnevii/app-0.0.1-SNAPSHOT'
+            bat 'docker push vishnevii/os .'
         }
       }
     }
