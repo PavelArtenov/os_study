@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: study-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: study-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: study-app
+    spec:
+      containers:
+        - name: study-app
+          image: vishnevii/os:latest
+          ports:
+            - containerPort: 8080
