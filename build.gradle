@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.1'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.openapi.generator' version '7.1.0'
 }
 
 group = 'ru.openshift'
@@ -18,6 +19,8 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -33,5 +36,37 @@ jar {
         )
     }
 }
+
+openApiGenerate {
+    generatorName.set("spring")
+
+    inputSpec.set("${rootDir}/src/main/resources/openapi/common.yaml")
+    outputDir.set("${buildDir}/generated/openapi")
+
+    apiPackage.set("ru.openshift.app.api")
+    invokerPackage.set("ru.openshift.app.invoker")
+    modelPackage.set("ru.openshift.app.model")
+
+    configOptions.set([
+            dateLibrary: "java8",
+            interfaceOnly: "true"
+    ])
+}
+
+sourceSets {
+    getByName("main") {
+        java {
+            srcDir("$buildDir/generated/openapi/src/main/java")
+        }
+    }
+}
+
+//tasks {
+////    val openApiGenerate by getting
+//
+//    val compileJava by getting {
+//        dependsOn(openApiGenerate)
+//    }
+//}
 
 //tasks.widark

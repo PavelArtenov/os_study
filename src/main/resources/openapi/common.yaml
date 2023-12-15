@@ -1,0 +1,129 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Monitoring
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/statistics
+paths:
+  /:
+    post:
+      summary: Save object
+      operationId: save
+      tags:
+        - statistics
+      parameters:
+        - name: messageId
+          in: header
+          description: Message identifier
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Statistics
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatisticsRequest'
+      responses:
+        '200':
+          description: Successfully saved
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Pets"
+#        default:
+#          description: unexpected error
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Error"
+#    post:
+#      summary: Create a pet
+#      operationId: createPets
+#      tags:
+#        - pets
+#      responses:
+#        '201':
+#          description: Null response
+#        default:
+#          description: unexpected error
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Error"
+#  /pets/{petId}:
+#    get:
+#      summary: Info for a specific pet
+#      operationId: showPetById
+#      tags:
+#        - pets
+#      parameters:
+#        - name: petId
+#          in: path
+#          required: true
+#          description: The id of the pet to retrieve
+#          schema:
+#            type: string
+#      responses:
+#        '200':
+#          description: Expected response to a valid request
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Pet"
+#        default:
+#          description: unexpected error
+#          content:
+#            application/json:
+#              schema:
+#                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    StatisticsRequest:
+      description: Set of random data to fill database
+      type: object
+      required:
+        - value1
+        - value2
+        - value3
+        - value4
+        - value5
+        - value6
+      properties:
+        value1:
+          description: Random value1
+          type: string
+        value2:
+          description: Random value2
+          type: string
+        value3:
+          description: Random value3
+          type: number
+        value4:
+          description: Random value4
+          type: integer
+        value5:
+          description: Random value5
+          type: string
+        value6:
+          description: Random value6
+          type: string
+#    Pets:
+#      type: array
+#      maxItems: 100
+#      items:
+#        $ref: "#/components/schemas/Pet"
+#    Error:
+#      type: object
+#      required:
+#        - code
+#        - message
+#      properties:
+#        code:
+#          type: integer
+#          format: int32
+#        message:
+#          type: string
