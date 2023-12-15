@@ -25,7 +25,7 @@ pipeline {
     stage('Docker Build') {
     	agent any
       steps {
-      	bat 'docker build -t vishnevii/os:myApp ./docker/sender'
+      	bat 'docker build . -t vishnevii/os:myApp -f docker/sender/Dockerfile'
       }
     }
     stage('Docker Push') {
