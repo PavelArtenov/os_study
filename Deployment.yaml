@@ -15,5 +15,6 @@ spec:
       containers:
         - name: study-app
           image: vishnevii/os:latest
+          imagePullPolicy: always
           ports:
             - containerPort: 8080
