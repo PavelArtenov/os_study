@@ -13,7 +13,7 @@ public class Configuration {
     @Bean
     public WebClient getWebClient() {
         WebClient client = WebClient.builder()
-                .baseUrl("listener-app-service.listener-project.svc.cluster.local")
+                .baseUrl("listener-route-listener-project.apps-crc.testing")
                 .defaultCookie("cookieKey", "cookieValue")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
