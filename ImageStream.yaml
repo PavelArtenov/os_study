@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: ImageStream
+metadata:
+  name: study-app
+spec:
+  tags:
+    - name: study-app
+      from:
+        kind: DockerImage
+        name: vishnevii/os:myApp
